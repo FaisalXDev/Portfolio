@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Faisal Bhayo — Frontend Developer</title>
+  <meta name="description" content="Portfolio of Faisal Bhayo — Frontend Developer (HTML, CSS, JavaScript, PHP)" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b1020; --card:#0f1724; --glass: rgba(255,255,255,0.04);
+      --accent1:#7C5CFF; --accent2:#00D4FF; --accent3:#00FF9C;
+      --glass-border: rgba(255,255,255,0.06);
+      --glass-blur: 10px; --max-w:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial;background:
+      radial-gradient(circle at 10% 10%, rgba(124,92,255,0.06), transparent 20%),
+      radial-gradient(circle at 90% 90%, rgba(0,212,255,0.03), transparent 20%),
+      var(--bg);color:#e6eef8; -webkit-font-smoothing:antialiased}
+    .wrap{max-width:var(--max-w);margin:36px auto;padding:28px}
+
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative;z-index:2}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--accent1),var(--accent2),var(--accent3));display:flex;align-items:center;justify-content:center;font-weight:800;color:#061226;box-shadow:0 6px 28px rgba(124,92,255,0.12)}
+    nav a{color:#cfeafc;text-decoration:none;margin-left:18px;font-weight:600;position:relative}
+    nav a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:3px;background:linear-gradient(90deg,var(--accent1),var(--accent2),var(--accent3));transition:width .28s}
+    nav a:hover::after{width:100%}
+
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center;padding:38px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);box-shadow:0 10px 50px rgba(2,6,23,0.6)}
+    .hero h1{font-size:34px;margin:0 0 10px 0}
+    .hero p{margin:0 0 18px 0;opacity:0.9}
+    .cta{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:700;transition:transform .18s ease,box-shadow .18s ease}
+    .btn-primary{background:linear-gradient(90deg,var(--accent1),var(--accent2),var(--accent3));color:#061226;box-shadow:0 8px 28px rgba(0,255,156,0.08)}
+    .btn-primary:hover{transform:translateY(-3px)}
+    .btn-ghost{background:transparent;border:1px solid var(--glass-border);color:#dbefff}
+    .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+
+    /* profile */
+    .profile-card{background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));padding:18px;border-radius:16px;text-align:center;box-shadow:0 10px 40px rgba(0,255,156,0.05);transition:transform .35s,box-shadow .35s}
+    .profile-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,255,156,0.12)}
+    .avatar{width:200px;height:270px;border-radius:150px;overflow:hidden;margin:0 auto 12px auto;border:6px solid rgba(255,255,255,0.03);box-shadow:0 0 24px rgba(124,92,255,0.12)}
+    .avatar img{width:102%;height:120%;object-fit:cover;display:block}
+    .role{opacity:0.9;margin-bottom:6px}
+    .tag{display:block;font-size:13px;color:rgba(255,255,255,0.85);margin-top:6px}
+
+    /* sections */
+    section{margin-top:34px;position:relative;z-index:2}
+    .section-title{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+    .glass{background:var(--glass);padding:18px;border-radius:12px;border:1px solid var(--glass-border);box-shadow:0 8px 24px rgba(0,0,0,0.45)}
+
+    /* skills */
+    .skills{display:flex;gap:12px;flex-wrap:wrap}
+    .skill{flex:1 1 200px;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+    .skill .bar{height:10px;border-radius:10px;background:rgba(255,255,255,0.06);overflow:hidden;margin-top:10px}
+    .skill .bar > i{display:block;height:100%;width:0;border-radius:10px;background:linear-gradient(90deg,var(--accent1),var(--accent2),var(--accent3));transition:width 1000ms cubic-bezier(.2,.9,.2,1)}
+
+    /* projects */
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+    .proj{position:relative;border-radius:12px;overflow:hidden;transition:transform .28s,box-shadow .28s}
+    .proj img{width:100%;height:200px;object-fit:cover;display:block;transition:transform .45s ease}
+    .proj:hover img{transform:scale(1.08)}
+    .proj:hover{transform:translateY(-6px);box-shadow:0 18px 50px rgba(2,6,23,0.6)}
+    .proj .meta{position:absolute;left:12px;bottom:12px;padding:8px 10px;border-radius:8px;background:linear-gradient(90deg, rgba(2,6,23,0.7), rgba(2,6,23,0.4));backdrop-filter:blur(4px);color:#fff}
+    .live-btn{display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:linear-gradient(90deg,var(--accent1),var(--accent2),var(--accent3));color:#061226;padding:8px 14px;border-radius:10px;font-weight:800;text-decoration:none;box-shadow:0 8px 30px rgba(0,255,156,0.06)}
+    .proj:hover .live-btn{display:block}
+
+    /* contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:16px}
+    form input, form textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    .contact-card{display:flex;flex-direction:column;gap:12px}
+    .contact-row{display:flex;gap:12px;align-items:center}
+    .icon{width:44px;height:44px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(90deg,var(--accent1),var(--accent2),var(--accent3));color:#061226;font-weight:700;box-shadow:0 8px 30px rgba(0,255,156,0.06)}
+    .socials{display:flex;gap:8px;margin-top:6px}
+    .socials a{padding:8px;border-radius:10px;text-decoration:none;color:inherit;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,0.04);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);transition:transform .18s}
+    .socials a:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(2,6,23,0.6)}
+
+    footer{margin-top:28px;text-align:center;color:#9fb6d4;opacity:0.95;font-weight:600}
+
+    @media(max-width:880px){.hero{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}.avatar{width:160px;height:160px}.wrap{margin:18px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">FB</div>
+        <div>
+          <div style="font-weight:700">Faisal Bhayo</div>
+          <div style="font-size:12px;opacity:0.8">Frontend Developer</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <h1 id="hero-title">Hi, I’m <span style="background:linear-gradient(90deg,var(--accent1),var(--accent2),var(--accent3));-webkit-background-clip:text;color:transparent">Faisal Bhayo</span> — Frontend Developer</h1>
+          <p>I create modern, responsive websites using HTML, CSS, JavaScript & PHP — focusing on performance and clean UI.</p>
+
+          <div class="cta">
+            <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View Projects</button>
+          </div>
+
+          <div class="chips" aria-hidden="true" style="margin-top:16px">
+            <div class="glass" style="padding:10px;border-radius:10px">Availability: <strong>Open for Freelance</strong></div>
+            <div class="glass" style="padding:10px;border-radius:10px">Location: <strong>Nawabshah, Pakistan</strong></div>
+          </div>
+        </div>
+
+        <aside class="profile-card" aria-label="Profile">
+          <div class="avatar"><img src="mmm.png" alt="Faisal Bhayo"></div>
+          <div style="font-weight:700">Faisal Bhayo</div>
+          <div class="role">Frontend Developer • HTML • CSS • JavaScript • PHP</div>
+          <span class="tag">Building responsive & dynamic web experiences.</span>
+
+          <div style="display:flex;gap:8px;justify-content:center;margin-top:12px">
+            <a class="btn btn-ghost" href="#projects">View Work</a>
+            <a class="btn btn-primary" href="#contact">Message</a>
+          </div>
+        </aside>
+      </section>
+
+      <section id="skills" aria-labelledby="skills-title">
+        <div class="section-title"><h2 id="skills-title" style="margin:0">Skills</h2><div style="opacity:0.7">Core tools</div></div>
+        <div class="glass">
+          <div class="skills" role="list">
+            <div class="skill" role="listitem"><div style="font-weight:700">HTML &amp; Semantics</div><div class="bar"><i style="width:92%"></i></div></div>
+            <div class="skill" role="listitem"><div style="font-weight:700">CSS &amp; Responsive Design</div><div class="bar"><i style="width:88%"></i></div></div>
+            <div class="skill" role="listitem"><div style="font-weight:700">JavaScript (ES6+)</div><div class="bar"><i style="width:82%"></i></div></div>
+            <div class="skill" role="listitem"><div style="font-weight:700">PHP &amp; Backend Integration</div><div class="bar"><i style="width:70%"></i></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" aria-labelledby="projects-title">
+        <div class="section-title"><h2 id="projects-title" style="margin:0">Projects</h2><div style="opacity:0.7">Selected works</div></div>
+        <div class="projects" role="list">
+          <div class="proj glass" role="listitem">
+            <a href="project1.html" target="_blank" rel="noopener noreferrer"><img src="https://images.unsplash.com/photo-1523475496153-3d6ccf4b8e0d?q=80&w=1200&auto=format&fit=crop" alt="Landing Page"></a>
+            <div class="meta"><strong>Landing Page</strong><div style="font-size:12px;opacity:0.8">HTML • CSS • JS</div></div>
+            <a class="live-btn" href="project1.html" target="_blank" rel="noopener noreferrer">Live Preview</a>
+          </div>
+
+          <div class="proj glass" role="listitem">
+            <a href="project2.html" target="_blank" rel="noopener noreferrer"><img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="UI Kit"></a>
+            <div class="meta"><strong>UI Kit</strong><div style="font-size:12px;opacity:0.8">Design • Figma</div></div>
+            <a class="live-btn" href="project2.html" target="_blank" rel="noopener noreferrer">Live Preview</a>
+          </div>
+
+          <div class="proj glass" role="listitem">
+            <a href="project3.html" target="_blank" rel="noopener noreferrer"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Portfolio App"></a>
+            <div class="meta"><strong>Portfolio App</strong><div style="font-size:12px;opacity:0.8">JS • PHP</div></div>
+            <a class="live-btn" href="project3.html" target="_blank" rel="noopener noreferrer">Live Preview</a>
+          </div>
+
+          <div class="proj glass" role="listitem">
+            <a href="project4.html" target="_blank" rel="noopener noreferrer"><img src="https://images.unsplash.com/photo-1542831371-d531d36971e6?q=80&w=1200&auto=format&fit=crop" alt="Phishing Detector"></a>
+            <div class="meta"><strong>Phishing Detector</strong><div style="font-size:12px;opacity:0.8">HTML • JS • ML Demo</div></div>
+            <a class="live-btn" href="project4.html" target="_blank" rel="noopener noreferrer">Live Preview</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-title">
+        <div class="section-title"><h2 id="contact-title" style="margin:0">Let’s Connect</h2><div style="opacity:0.7">Professional contact</div></div>
+        <div class="glass contact-grid">
+          <form class="contact-card" onsubmit="event.preventDefault();alert('Demo: form submitted. Connect a backend or email service to handle messages.');">
+            <input placeholder="Your name" required />
+            <input placeholder="Your email" type="email" required />
+            <textarea rows="6" placeholder="Message"></textarea>
+            <button class="btn btn-primary" type="submit">Send Message</button>
+          </form>
+
+          <aside class="glass contact-card" aria-label="Contact info">
+            <div style="font-weight:700">Contact Info</div>
+
+            <div class="contact-row">
+              <div class="icon" aria-hidden="true">GH</div>
+              <div>
+                <div style="font-weight:700">GitHub</div>
+                <a href="https://github.com/FaisalXDev" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;opacity:0.9">github.com/FaisalXDev</a>
+              </div>
+            </div>
+
+            <div class="contact-row">
+              <div class="icon" aria-hidden="true">F</div>
+              <div>
+                <div style="font-weight:700">Facebook</div>
+                <a href="https://www.facebook.com/share/1FAYQ7f9Dr/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;opacity:0.9">facebook.com/faisal.bhayo</a>
+              </div>
+            </div>
+
+            <div class="contact-row">
+              <div class="icon" aria-hidden="true">@</div>
+              <div>
+                <div style="font-weight:700">Email</div>
+                <a href="mailto:developer@faisal.dev" style="color:inherit;text-decoration:none;opacity:0.9">developer@faisal.dev</a>
+              </div>
+            </div>
+
+            <div class="contact-row">
+              <div class="icon" aria-hidden="true">in</div>
+              <div>
+                <div style="font-weight:700">LinkedIn</div>
+                <a href="https://linkedin.com/in/faisalxdev" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;opacity:0.9">linkedin.com/in/faisalxdev</a>
+              </div>
+            </div>
+
+            <div style="margin-top:6px;font-size:13px;opacity:0.85">Phone (placeholder): +92 300 1234567</div>
+
+            <div style="margin-top:12px;font-weight:700">Socials</div>
+            <div class="socials">
+              <a href="https://github.com/FaisalXDev" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="https://www.facebook.com/share/1FAYQ7f9Dr/" target="_blank" rel="noopener noreferrer">Facebook</a>
+              <a href="https://linkedin.com/in/faisalxdev" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <footer>© <span id="yr"></span> Faisal Bhayo — Built with ❤ • Crafted for frontend.</footer>
+    </main>
+  </div>
+
+  <script>
+    // set year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // animate skills when visible
+    const bars = document.querySelectorAll('.skill .bar > i');
+    function animateBars() {
+      for (const b of bars) {
+        const w = b.style.width || b.getAttribute('data-width') || '';
+        b.style.width = '0%';
+        // restore declared width (styles in DOM) after short delay
+        setTimeout(()=> {
+          // if inline width present in markup, use it, else check computed data
+          if (w) b.style.width = w;
+          else {
+            // fallback widths based on skill label
+            const label = b.closest('.skill').querySelector('div').innerText.toLowerCase();
+            if (label.includes('html')) b.style.width = '92%';
+            else if (label.includes('css')) b.style.width = '88%';
+            else if (label.includes('javascript')) b.style.width = '82%';
+            else if (label.includes('php')) b.style.width = '70%';
+            else b.style.width = '60%';
+          }
+        }, 180);
+      }
+    }
+    const skillsSection = document.getElementById('skills');
+    const skillsObserver = new IntersectionObserver((entries)=> {
+      for (const e of entries) if (e.isIntersecting) { animateBars(); skillsObserver.disconnect(); }
+    }, {threshold:0.25});
+    if (skillsSection) skillsObserver.observe(skillsSection);
+
+    // small particle-ish background (light)
+    (function(){
+      const c = document.createElement('canvas');
+      c.style.position='fixed'; c.style.inset=0; c.style.zIndex=0; c.style.pointerEvents='none';
+      document.body.appendChild(c);
+      const ctx = c.getContext('2d');
+      let w = c.width = innerWidth, h = c.height = innerHeight;
+      const ps = [];
+      function rand(min,max){return Math.random()*(max-min)+min}
+      for (let i=0;i<60;i++){ps.push({x:rand(0,w),y:rand(0,h),r:rand(0.6,2.5),vx:rand(-0.25,0.5),vy:rand(-0.25,0.5)})}
+      addEventListener('resize',()=>{w=c.width=innerWidth;h=c.height=innerHeight});
+      function draw(){ctx.clearRect(0,0,w,h);for(const p of ps){p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0;ctx.beginPath();ctx.fillStyle='rgba(124,92,255,0.06)';ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill()}requestAnimationFrame(draw)}
+      draw();
+    })();
+
+    // friendly keyboard shortcut: press "g" to go to contact quickly
+    window.addEventListener('keydown', (e) => {
+      if (e.key.toLowerCase() === 'g') {
+        document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+      }
+    });
+  </script>
+</body>
+</html>
